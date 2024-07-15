@@ -11,15 +11,15 @@ function JobCard({ title, company, type, experience, location, skills, postedOn,
   };
 
   return (
-    <div className='mx-40 mb-4'>
-      <div className='flex justify-between items-center px-6 py-4 bg-zinc-200 rounded-md border border-black shadow-lg hover:border-blue-500 hover:translate-y-1 hover:scale-103'>
+    <div className='mx-auto mb-4 max-w-3xl'>
+      <div className='flex justify-between items-center px-6 py-4 bg-white rounded-md border border-gray-300 shadow-lg hover:shadow-2xl transition-shadow duration-200'>
         <div className='flex flex-col items-start gap-3'>
-          <h1 className='text-lg font-semibold'>{title} - {company}</h1>
-          <p>{type} &#x2022; {experience} &#x2022; {location}</p>
+          <h1 className='text-lg font-semibold text-black'>{title} - {company}</h1>
+          <p className='text-black'>{type} &#x2022; {experience} &#x2022; {location}</p>
           <div className='flex items-center gap-2'>
             {Array.isArray(skills) ? (
               skills.map((skill, i) => (
-                <p key={i} className='text-gray-500 py-1 px-2 rounded-md border border-black'>{skill}</p>
+                <p key={i} className='text-gray-500 py-1 px-2 rounded-md border border-gray-300'>{skill}</p>
               ))
             ) : (
               <p className='text-gray-500'>Skills not specified</p>
@@ -28,7 +28,7 @@ function JobCard({ title, company, type, experience, location, skills, postedOn,
         </div>
         <div className='flex items-center gap-4'>
           <p className='text-gray-500'>Posted {diffInDays === 0 ? 'today' : `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`}</p>
-          <button onClick={handleApplyClick} className='text-blue-500 border border-blue-500 px-10 py-2 rounded-md cursor-pointer'>Apply</button>
+          <button onClick={handleApplyClick} className='text-blue-700 border border-blue-500 px-4 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors duration-200'>Apply</button>
         </div>
       </div>
     </div>
@@ -36,3 +36,4 @@ function JobCard({ title, company, type, experience, location, skills, postedOn,
 }
 
 export default JobCard;
+
