@@ -1,5 +1,3 @@
-// App.jsx
-
 import React, { useEffect, useState } from "react";
 import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 import { db } from "./firebase.config";
@@ -59,20 +57,25 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="bg-blue-900 min-h-screen text-white">
       <Navbar />
       <Header />
       <SearchBar fetchJobsCustom={fetchJobsCustom} />
       {customSearch && (
-        <button onClick={fetchJobs} className="flex pl-[1250px] mb-2">
-          <p className="bg-blue-500 px-10 py-2 rounded-md text-white">Clear Filters</p>
-        </button>
+        <div className="flex justify-center mb-4">
+          <button onClick={fetchJobs} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+            Clear Filters
+          </button>
+        </div>
       )}
-      {jobs.map((job) => (
-        <JobCard key={job.id} {...job} />
-      ))}
+      <div className="px-8">
+        {jobs.map((job) => (
+          <JobCard key={job.id} {...job} />
+        ))}
+      </div>
     </div>
   );
 }
 
 export default App;
+
