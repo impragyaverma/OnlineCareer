@@ -13,13 +13,6 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
-
-    "firebase": "^10.12.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "dayjs": "^1.11.10"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -63,4 +56,5 @@
     ]
   }
 }
+
 
