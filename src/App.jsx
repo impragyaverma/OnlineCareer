@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -11,16 +9,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 import { db } from "./firebase.config";
-=======
-import React, { useEffect, useState } from "react";
-import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
-import { db } from "./firebase.config";
-import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import JobCard from "./components/JobCard";
-import 'tailwindcss/tailwind.css';
->>>>>>> f6ae85415787b380d80ec5ad22bd296275728612
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -72,9 +60,8 @@ function App() {
   }, []);
 
   return (
-<<<<<<< HEAD
     <Router>
-      <div className="bg-blue-900 min-h-screen text-black">
+      <div className="bg-blue-900 min-h-screen text-white">
         <Navbar />
         <Header />
         <Routes>
@@ -91,32 +78,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-=======
-    <div className="bg-blue-900 min-h-screen text-white">
-      <Navbar />
-      <Header />
-      <SearchBar fetchJobsCustom={fetchJobsCustom} />
-      {customSearch && (
-        <div className="flex justify-center mb-4">
-          <button onClick={fetchJobs} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-            Clear Filters
-          </button>
-        </div>
-      )}
-      <div className="px-8">
-        {jobs.map((job) => (
-          <JobCard key={job.id} {...job} />
-        ))}
-      </div>
-    </div>
->>>>>>> f6ae85415787b380d80ec5ad22bd296275728612
   );
 }
 
 export default App;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f6ae85415787b380d80ec5ad22bd296275728612
-
