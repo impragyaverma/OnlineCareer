@@ -5,7 +5,8 @@ import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import JobCard from './components/JobCard';
 import Login from './components/Login'; 
-import Register from './components/Register'; // Correct import for Register
+import Register from './components/Register';
+import AddJob from './components/AddJob'; // Import AddJob component
 import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 import { db } from "./firebase.config";
 
@@ -60,7 +61,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-blue-900 min-h-screen text-white">
+      <div className="bg-blue-900 min-h-screen text-black-800">
         <Navbar />
         <Header />
         <Routes>
@@ -74,6 +75,7 @@ function App() {
               ))}
             </div>
           } />
+          <Route path="/add-job" element={<AddJob />} /> {/* Add AddJob route */}
         </Routes>
       </div>
     </Router>
@@ -81,8 +83,3 @@ function App() {
 }
 
 export default App;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 702f9f02f78fe0523063345c88b57cba5a161eac

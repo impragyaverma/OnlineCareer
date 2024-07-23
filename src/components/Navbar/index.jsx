@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center p-4 bg-blue-800 text-white">
-      <h1 className="text-2xl font-bold">Joboard.</h1>
-      <div>
-        <Link to="/login" className="mr-4 bg-white text-blue-800 px-4 py-2 rounded">Login</Link>
-        <Link to="/register" className="bg-white text-blue-800 px-4 py-2 rounded">Register</Link>
+    <nav className="bg-blue-800 p-4 flex justify-between items-center">
+      <div className="text-white text-xl font-bold">
+        JobBoard
+      </div>
+      <div className="space-x-4">
+        <Link to="/" className="text-white hover:text-gray-300">Home</Link>
+        <Link to="/login" className="text-white hover:text-gray-300">Login</Link>
+        <Link to="/register" className="text-white hover:text-gray-300">Register</Link>
+        <Link to="/add-job" className="text-white hover:text-gray-300">Add Job</Link> {/* Add Job link */}
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-
-
