@@ -1,28 +1,84 @@
-<<<<<<< HEAD
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import JobCard from './components/JobCard';
+import Login from './components/Login'; 
+import Register from './components/Register'; // Correct import for Register
+import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
+import { db } from "./firebase.config";
 
-const Navbar = () => {
+function App() {
+  const [jobs, setJobs] = useState([]);
+  const [customSearch, setCustomSearch] = useState(false);
+
+  const fetchJobs = async () => {
+    setCustomSearch(false);
+    const tempJobs = [];
+    const jobsRef = collection(db, "jobs");
+    const q = query(jobsRef, orderBy("postedOn", "desc"));
+    const req = await getDocs(q);
+
+    req.forEach((job) => {
+      tempJobs.push({
+        ...job.data(),
+        id: job.id,
+        postedOn: job.data().postedOn.toDate()
+      });
+    });
+    setJobs(tempJobs);
+  };
+
+  const fetchJobsCustom = async (jobCriteria) => {
+    setCustomSearch(true);
+    const tempJobs = [];
+    const jobsRef = collection(db, "jobs");
+    const q = query(
+      jobsRef,
+      where("type", "==", jobCriteria.type),
+      where("title", "==", jobCriteria.title),
+      where("experience", "==", jobCriteria.experience),
+      where("location", "==", jobCriteria.location),
+      orderBy("postedOn", "desc")
+    );
+    const req = await getDocs(q);
+
+    req.forEach((job) => {
+      tempJobs.push({
+        ...job.data(),
+        id: job.id,
+        postedOn: job.data().postedOn.toDate()
+      });
+    });
+    setJobs(tempJobs);
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
   return (
-    <nav className="flex justify-between items-center p-4 bg-blue-800 text-white">
-      <h1 className="text-2xl font-bold">Joboard.</h1>
-      <div>
-        <Link to="/login" className="mr-4 bg-white text-blue-800 px-4 py-2 rounded">Login</Link>
-        <Link to="/register" className="bg-white text-blue-800 px-4 py-2 rounded">Register</Link>
+    <Router>
+      <div className="bg-blue-900 min-h-screen text-white">
+        <Navbar />
+        <Header />
+        <Routes>
+          <Route path="/" element={<SearchBar fetchJobsCustom={fetchJobsCustom} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/jobs" element={
+            <div className="px-8">
+              {jobs.map((job) => (
+                <JobCard key={job.id} {...job} />
+              ))}
+            </div>
+          } />
+        </Routes>
       </div>
-    </nav>
+    </Router>
   );
-};
-=======
-import React from 'react'
-
-function Navbar() {
-  return (
-    <div className='h-20 flex items-center w-full bg-blue-800 text-white'>
-      <div className='text-3xl pl-20 font-bold'>Joboard.</div>
-    </div>
-  )
 }
->>>>>>> f6ae85415787b380d80ec5ad22bd296275728612
 
-export default Navbar;
+export default App;
+
