@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -13,16 +12,5 @@ const Navbar = () => {
     </nav>
   );
 };
-=======
-import React from 'react'
-
-function Navbar() {
-  return (
-    <div className='h-20 flex items-center w-full bg-blue-800 text-white'>
-      <div className='text-3xl pl-20 font-bold'>Joboard.</div>
-    </div>
-  )
-}
->>>>>>> f6ae85415787b380d80ec5ad22bd296275728612
 
 export default Navbar;
