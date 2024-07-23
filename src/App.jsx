@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import JobCard from './components/JobCard';
 import Login from './components/Login'; 
 import Register from './components/Register';
+import AddJob from './components/AddJob'; // Import AddJob component
 import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 import { db } from "./firebase.config";
 
@@ -75,6 +75,7 @@ function App() {
               ))}
             </div>
           } />
+          <Route path="/add-job" element={<AddJob />} /> {/* Add AddJob route */}
         </Routes>
       </div>
     </Router>
@@ -82,3 +83,4 @@ function App() {
 }
 
 export default App;
+
