@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase.config';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {  // Receive setIsLoggedIn as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,6 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      setIsLoggedIn(true);  // Set login status to true
       navigate('/jobs');
     } catch (error) {
       setError('Failed to login. Please check your email and password.');
@@ -55,5 +56,6 @@ const Login = () => {
 };
 
 export default Login;
+
 
 
