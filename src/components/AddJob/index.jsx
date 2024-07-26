@@ -1,4 +1,3 @@
-// src/components/AddJob/index.jsx
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase.config';
@@ -9,13 +8,14 @@ const AddJob = () => {
   const [type, setType] = useState('');
   const [experience, setExperience] = useState('');
   const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
+  const [skills, setSkills] = useState('');
+  const [link, setLink] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleAddJob = async (e) => {
     e.preventDefault();
-    if (!title || !type || !experience || !location || !description) {
+    if (!title || !type || !experience || !location || !skills || !link) {
       setError('All fields are required.');
       return;
     }
@@ -26,7 +26,8 @@ const AddJob = () => {
         type,
         experience,
         location,
-        description,
+        skills,
+        link,
         postedOn: new Date(),
       });
       navigate('/jobs');
@@ -85,11 +86,23 @@ const AddJob = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block mb-2 text-sm font-medium">Job Description:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+            <label htmlFor="skills" className="block mb-2 text-sm font-medium">Skills Required:</label>
+            <input
+              type="text"
+              id="skills"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="link" className="block mb-2 text-sm font-medium">Application Link:</label>
+            <input
+              type="url"
+              id="link"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded"
               required
             />
@@ -103,3 +116,4 @@ const AddJob = () => {
 };
 
 export default AddJob;
+
